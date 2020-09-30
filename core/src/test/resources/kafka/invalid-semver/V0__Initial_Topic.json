@@ -1,0 +1,21 @@
+[
+  {
+    "topic": "topic",
+    "updateType": "CREATE",
+    "partitions": 5,
+    "replicationFactor": 1
+  },
+  {
+    "topic": "topic-with-configs",
+    "updateType": "CREATE",
+    "partitions": 5,
+    "replicationFactor": 1,
+    "configs": [
+      {
+        "config": "cleanup.policy",
+        "value": "compact",
+        "type": "SET"
+      }
+    ]
+  }
+]

@@ -1,0 +1,43 @@
+version: '3'
+services:
+  zookeeper:
+    image: zookeeper:latest
+    hostname: zookeeper
+    restart: unless-stopped
+    volumes:
+    - ./zookeeper/zookeeper_jaas.conf:/etc/zookeeper/zookeeper_jaas.conf
+    ports:
+      - "2181:2181"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_PORT: 2181
+      ZOO_SERVERS: server.1=zookeeper:2888:3888;2181
+      JVMFLAGS: "-Dzookeeper.authProvider.sasl=org.apache.zookeeper.server.auth.SASLAuthenticationProvider -Djava.security.auth.login.config=/etc/zookeeper/zookeeper_jaas.conf"
+  kafka:
+    image: confluentinc/cp-kafka:6.0.0
+    hostname: kafka
+    restart: unless-stopped
+    depends_on:
+    - zookeeper
+    volumes:
+    - ./server/adminclient.conf:/etc/kafka/adminclient.conf
+    - ./server/kafka_server_jaas.conf:/etc/kafka/kafka_server_jaas.conf
+    ports:
+    - 9092:9092
+    - 19092:19092
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: LOCALHOST://localhost:9092,docker://kafka:19092
+      KAFKA_BROKER_ID: 1
+      KAFKA_BROKER_RACK: "r1"
+      KAFKA_INTER_BROKER_LISTENER_NAME: docker
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: docker:SASL_PLAINTEXT,LOCALHOST:SASL_PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_SASL_CLIENT: "false"
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: PLAIN
+      KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
+      KAFKA_SUPER_USERS: User:admin
+      KAFKA_OPTS: "-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf"

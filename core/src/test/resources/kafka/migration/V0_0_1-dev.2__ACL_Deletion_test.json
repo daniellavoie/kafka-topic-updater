@@ -1,0 +1,15 @@
+[
+  {
+    "topic": "topic-with-acl-to-delete",
+    "updateType": "ALTER",
+    "deleteAcls": [
+      {
+        "principal": "User:app",
+        "host": "*",
+        "operation": "READ",
+        "permissionType":"ALLOW",
+        "patternType":"LITERAL"
+      }
+    ]
+  }
+]

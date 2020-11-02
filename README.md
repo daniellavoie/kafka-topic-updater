@@ -22,22 +22,16 @@ This system allows to take those configurations and point at any cluster and rec
 
 ## Features
 
-* Incremental and versioned updates of kafka topics [In Progress]
-* Checksum validation from previously executed upgrades versus the one available in the configuration repository [In Progress]
-* Spring Boot support with dedicated ` spring-boot-starter-kafka-topic-updater` [TODO]
-* Runnable CLI support with `kafka-topic-updater.jar` [TODO]
+* Incremental and versioned updates of kafka topics
+* Checksum validation from previously executed upgrades versus the one available in the configuration repository
+* Runnable CLI support with `kafka-topic-updater.jar`
+* Spring Boot support with dedicated ` spring-boot-starter-kafka-topic-updater`
+* Topic ACL support
 
 ## Future features
 
-* ACL upgrade support [TODO]
 * Schema Registry and schemas upgrade support [TODO]
-* Kubernetes CRD [TODO]
 
 ## Current state
 
-The project is still a work and progress and does not work as is. The source is code is opened for everyone to observe.
-
-## TODOs
-
-* TopicServiceImpl - Check if partition or replication factor changes requires a distinct adminclient API than alterConfigs.
-* Assert topic delete behavior when a consumer is still subscribed to the topic.
+The project is still a work and progress. Initial version can be built and run as is. The CLI sub project is an executable jar.

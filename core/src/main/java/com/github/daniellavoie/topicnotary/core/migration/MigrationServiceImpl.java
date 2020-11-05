@@ -54,14 +54,21 @@ public class MigrationServiceImpl implements MigrationService {
 	}
 
 	public MigrationEntry apply(MigrationEntry migrationEntry) {
-		migrationEntry.getDefinitions().forEach(this::apply);
+		try {
+			migrationEntry.getDefinitions().forEach(this::apply);
 
-		MigrationEntry result = repository.save(successfulMigration(migrationEntry));
+			MigrationEntry result = repository.save(successfulMigration(migrationEntry));
 
-		LOGGER.info("Successfully applied migration {} - {}.", migrationEntry.getVersion(),
-				migrationEntry.getDescription());
+			LOGGER.info("Successfully applied migration {} - {}.", migrationEntry.getVersion(),
+					migrationEntry.getDescription());
 
-		return result;
+			return result;
+		} catch (RuntimeException ex) {
+			LOGGER.error("Failed to apply migration" + migrationEntry.getVersion() + " - "
+					+ migrationEntry.getDescription());
+
+			throw ex;
+		}
 	}
 
 	public List<MigrationEntry> findAll() {

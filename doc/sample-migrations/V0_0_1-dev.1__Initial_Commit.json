@@ -1,0 +1,60 @@
+[
+  {
+    "topic": "topic",
+    "updateType": "CREATE",
+    "partitions": 5,
+    "replicationFactor": 1
+  },
+  {
+    "topic": "topic-with-configs",
+    "updateType": "CREATE",
+    "partitions": 5,
+    "replicationFactor": 1,
+    "configs": [
+      {
+        "config": "cleanup.policy",
+        "type": "SET",
+        "value": "delete"
+      },
+      {
+        "config": "retention.ms",
+        "type": "SET",
+        "value": "-1"
+      }
+    ],
+    "createAcls": []
+  },
+  {
+    "topic": "topic-with-acl",
+    "updateType": "CREATE",
+    "partitions": 5,
+    "replicationFactor": 1,
+    "configs": [],
+    "createAcls": [
+      {
+        "principal": "User:app",
+        "host": "*",
+        "operation": "READ",
+        "permissionType":"ALLOW",
+        "patternType":"LITERAL"
+      }
+    ]
+  },
+  {
+    "topic": "topic-with-acl-to-delete",
+    "updateType": "CREATE",
+    "partitions": 5,
+    "replicationFactor": 1,
+    "configs": [],
+    "createAcls": [
+      {
+        "principal": "User:app",
+        "host": "*",
+        "operation": "READ",
+        "permissionType":"ALLOW",
+        "patternType":"LITERAL"
+      }
+    ],
+    "deleteAcls": []
+  }
+]

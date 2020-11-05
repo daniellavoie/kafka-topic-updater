@@ -1,0 +1,8 @@
+[
+  {
+    "topic": "ordering-test-2",
+    "updateType": "CREATE",
+    "partitions": 5,
+    "replicationFactor": 1
+  }
+]

@@ -3,9 +3,25 @@
   <parent>
     <groupId>dev.daniellavoie</groupId>
     <artifactId>topic-notary-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0-alpha.1</version>
   </parent>
   <artifactId>topic-notary-core</artifactId>
+  
+  <properties>
+    <skipIntegrationTests>true</skipIntegrationTests>
+  </properties>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <skipITs>${skipIntegrationTests}</skipITs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   
   <dependencies>
     <dependency>

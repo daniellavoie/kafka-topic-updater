@@ -8,10 +8,11 @@
   
   <groupId>dev.daniellavoie</groupId>
   <artifactId>topic-notary-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-alpha.1</version>
   <name>Topic Notary Parent</name>
   
   <packaging>pom</packaging>
+  
   <modules>
   	<module>core</module>
   	<module>spring</module>

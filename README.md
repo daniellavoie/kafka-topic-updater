@@ -39,12 +39,12 @@ This system allows to take those configurations and point at any cluster and rec
 ## Pre-requisite
 
 * Java > 1.8
-* Access to a Kafka bootstrap server (one is provided with docker-compose through the (run-kafka.sh)[run-kafka.sh] script.
+* Access to a Kafka bootstrap server (one is provided with docker-compose through the [run-kafka.sh](run-kafka.sh) script.
 * Administrative permissions if the ACL are enabled on the Kafka cluster (pre-configured with provided docker-compose).
 
 ### Build
 
-This project is packaged with the (Maven Wrapper)[https://github.com/takari/maven-wrapper]. It can be build  using `./mvw` or `mvn.bat` commands.
+This project is packaged with the [Maven Wrapper](https://github.com/takari/maven-wrapper). It can be build  using `./mvw` or `mvn.bat` commands.
 
 ```
 ./mvnw clean package
@@ -120,7 +120,7 @@ Major release manifest : `V2_0_0__Delete_Topic_Showcase.json`
 
 ### Running locally with Docker Compose
 
-A convenient (docker-compose/docker-compose.yml)[docker-compose file] is included in the project that allows to setup and run all the infrastructure required to get started with local test or even local development if you wish to contribute to the project. The Kafka cluster is pre configured with SASL Plain and an ACL Authorizer effectively allowing management of ACL create and delete within migration manifests. The `./run-kafka.sh` will setup the docker-compose deployment for you. 
+A convenient [docker-compose file](docker-compose/docker-compose.yml) is included in the project that allows to setup and run all the infrastructure required to get started with local test or even local development if you wish to contribute to the project. The Kafka cluster is pre configured with SASL Plain and an ACL Authorizer effectively allowing management of ACL create and delete within migration manifests. The `./run-kafka.sh` will setup the docker-compose deployment for you. 
 
 ```
 ./run-kafka.sh && \
@@ -137,7 +137,7 @@ A convenient (docker-compose/docker-compose.yml)[docker-compose file] is include
 
 Executing migrations on a remote Kafka cluster is done simply by providing the `--bootstrap-servers` argument (which defaults to `localhost:9090`).
 
-This example is compatible with a remotely managed clusters like Confluent Cloud. Refer to the (doc/confluent-cloud.md)[documentation section on Confluent Cloud] for instructions on how to provision an API key for Topic Notary to work properly.
+This example is compatible with a remotely managed clusters like Confluent Cloud. Refer to the [documentation section on Confluent Cloud](doc/confluent-cloud.md) for instructions on how to provision an API key for Topic Notary to work properly.
 
 ```
 ./cli/target/topic-notary-cli.jar \

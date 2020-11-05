@@ -24,10 +24,10 @@ This system allows to take those configurations and point at any cluster and rec
 
 ### Features
 
-* Incremental and versioned updates of kafka topics
+* Incremental and versioned updates of Kafka topics
 * Checksum validation from previously executed upgrades versus the one available in the configuration repository
-* Runnable CLI support with `kafka-topic-updater.jar`
-* Spring Boot support with dedicated ` spring-boot-starter-kafka-topic-updater`
+* Runnable CLI support with `topic-notary-cli.jar`
+* Spring Boot support with dedicated starter
 * Topic ACL support
 
 ### Upcoming features

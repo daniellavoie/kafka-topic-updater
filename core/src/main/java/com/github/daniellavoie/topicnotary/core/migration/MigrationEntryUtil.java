@@ -84,9 +84,15 @@ public abstract class MigrationEntryUtil {
 	}
 
 	protected static List<MigrationEntry> loadMigrationEntries(String environment, String migrationDir) {
-		return ResourceUtil.getResourceFiles(migrationDir).stream()
+		List<MigrationEntry> entries = ResourceUtil.getResourceFiles(migrationDir).stream()
 				.map(resource -> MigrationEntryUtil.buildUpdateEntry(environment, resource))
 				.collect(Collectors.toList());
+
+		entries.sort(
+				(o1, o2) -> (o1.getVersion() + o1.getDescription()).compareTo(o2.getVersion() + o2.getDescription()));
+		;
+
+		return entries;
 	}
 
 	private static String computeChecksum(String rawUpdateDefinition) {
